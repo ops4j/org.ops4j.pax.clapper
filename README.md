@@ -1,5 +1,5 @@
-Pax Clapper - Managed Deployment system for Cloud providers.
-==============
+# Pax Clapper
+
 
 Pax Clapper is a Deployment Management system, with ambitions to be for OSGi applications what Google AppEngine
 is for web applications.
@@ -11,9 +11,10 @@ either for public cloud providers or for in-house cloud, virtualization or other
     * Container - Abstraction of the _clean_ host.
     * Runtime - The process(es) that is started in the Container.
     * Client - User Interfaces to the running Clapper plant.
+    * CellLocation - A geographic location where Cells can reside
     * Cell - A logical partition of a data center, containing hosts and networks.
     * Stage - A step in a progress of Application Lifecycle Management. dev -> qa -> uat -> prod
-    * InstancePool - A set of resources spanning all Stages and containing one Application.
+    * InstancePool - A set of resources spanning all Stages in a Cell and containing one Application.
 
 ## Containers
 The Container abstraction tries to encompass the vital parts of what is needed to run an application. The Container
