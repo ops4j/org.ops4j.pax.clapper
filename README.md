@@ -8,9 +8,12 @@ is for web applications.
 Pax Clapper operates with a few abstractions, and concrete implementations of these abstractions must be developed,
 either for public cloud providers or for in-house cloud, virtualization or other deployment architectures.
 
-    * Containers - Abstraction of the _clean_ host.
-    * Runtimes - The process(es) that is started in the Container.
-    * Clients - User Interfaces to the running Clapper plant.
+    * Container - Abstraction of the _clean_ host.
+    * Runtime - The process(es) that is started in the Container.
+    * Client - User Interfaces to the running Clapper plant.
+    * Cell - A logical partition of a data center, containing hosts and networks.
+    * Stage - A step in a progress of Application Lifecycle Management. dev -> qa -> uat -> prod
+    * InstancePool - A set of resources spanning all Stages and containing one Application.
 
 ## Containers
 The Container abstraction tries to encompass the vital parts of what is needed to run an application. The Container
@@ -37,4 +40,12 @@ Applications are packaged as Deployment Packages, defined by the OSGi Deployment
 The Scripted Runtime simply deploys a script on to the Container. The script must work with all resources only being
 reachable be network, not on the local file system.
 
+## Server
+The Clapper server is a Clapper application managing itself.
+
+## Clients
+
+### CLI - Command Line Interface
+
+### Web
 
