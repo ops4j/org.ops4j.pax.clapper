@@ -1,0 +1,40 @@
+apply plugin: 'maven'
+
+pom {
+
+  project {
+    url 'http://team.ops4j.org'
+    organization {
+      name 'OPS4J Community'
+      url 'http://team.ops4j.org'
+    }
+    inceptionYear '2013'
+    issueManagement {
+      system 'jira'
+      url 'http://team.ops4j.org/browse/PAXCLAPPER'
+    }
+    scm {
+      url "http://github.com/OPS4J/org.ops4j.pax.clapper"
+      connection "scm:git:http://github.com/OPS4J/org.ops4j.pax.clapper.git"
+      developerConnection "scm:git:git@github.com:OPS4J/org.ops4j.pax.clapper.git"
+    }
+    licenses {
+      license {
+        name 'Apache License version 2.0'
+        url 'http://www.apache.org/licenses/LICENSE-2.0'
+      }
+    }
+    developers {
+      developer {
+        id 'niclas@hedhman.org'
+        name 'Niclas Hedhman'
+        email 'niclas@hedhman.org'
+        roles {
+          role 'Core Team'
+        }
+        organizationUrl 'http://www.qi4j.org'
+        timezone 'UTC+8'
+      }
+    }
+  }
+}

@@ -1,0 +1,66 @@
+
+apply plugin: 'project-report'
+apply from: "maven-compat.gradle"
+apply plugin: 'sonar'
+apply from: 'libraries.gradle'
+
+// Define repositories URLs here so we can reuse them in the build script
+// Needed as Gradle forbid access to declared repositories URLs by design
+// Releasable submodules should not declare repositories in their own build files
+def repos_urls = [
+        mavenCentral: "http://repo1.maven.org/maven2/",
+        ops4j: "http://repository.ops4j.org/maven2/",
+//        restlet: 'http://maven.restlet.org',
+//        javanet: "http://download.java.net/maven/2",
+]
+
+allprojects {
+
+  apply plugin: 'java'
+  apply plugin: 'idea'
+  apply plugin: 'signing'
+
+
+
+  project.ext {
+    javaDir = new File( (String) "$projectDir/src/main/java" )
+    scalaDir = new File( (String)"$projectDir/src/main/scala" )
+    documentationDir = new File( (String)"$projectDir/src/docs" )
+    testJavaDir = new File( (String)"$projectDir/src/tests/java" )
+    testScalaDir = new File( (String)"$projectDir/src/tests/scala" )
+  }
+
+  configurations {
+    deployerJars
+    provided
+    compile.extendsFrom provided
+    runtime.extendsFrom compile
+  }
+
+  repositories {
+    mavenCentral()
+    maven {
+      url repos_urls.ops4j
+    }
+  }
+
+  if( ext.javaDir.isDirectory() || ext.scalaDir.isDirectory() ||
+      ext.testJavaDir.isDirectory() || ext.testScalaDir.isDirectory() )
+  {
+    apply plugin: VersionClass
+    apply plugin: AsciidocBuildInfo
+    apply plugin: 'osgi'
+
+    jar {
+      manifest {
+        description = project.description ?: 'Pax Clapper is an OSGi Application Deployment system for Cloud'
+      }
+    }
+  }
+}
+
+idea.project.ipr {
+  withXml { provider ->
+    provider.node.component.find { it.@name == 'VcsDirectoryMappings' }.mapping.@vcs = 'Git'
+  }
+}

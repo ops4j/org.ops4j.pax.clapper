@@ -1,0 +1,59 @@
+
+= Application =
+An application of no particular version, running on a Runtime. The <<Runtime>> defines the packaging
+format of the Application. For the Clapper Services Runtime, it is an ApplicationDescriptor which defines
+which OSGi bundles, resources and OSGi framework to run.
+
+= ApplicationDescriptor =
+The ApplicationDescriptor defines how to assemble an <<Application>> for the <<Clapper Services Runtime>>.
+It contains a manifest and lists of bundles, resources and signatures, all in accordance with the OSGi
+Deployment Admin Specification 114.
+
+= ApplicationInstance =
+ApplicationInstance represents an <<Application>> of a particular version that has been started in a given
+<<Stage>>. It is the interfacing handle for instance control, probes and events from the process(es).
+
+= BundleDescriptor =
+Defines an OSGi Bundle that can be installed. The Bundle itself may reside on an OBR, local file system or
+networked locations.
+
+= CellLocation =
+A CellLocation is one or more data centers considered to be located at the same place. This could be
+data centers within the same city or country, but from the application developers' point of view,
+the exact data center isn't important.
+
+= Cell =
+A Cell is a logical grouping of one or more hosts located within the same data center. A host may belong to
+more than one Cell.
+
+= Clapper Services Runtime =
+Clapper Services Runtime is the actual application that is started in the <<Container>>. This is known as the
+default <<Runtime>>, and will launch an OSGi container and all configured <<Service Bundle>>.
+
+= Container =
+Container is an abstraction of a remote system that can be commissioned. Containers are pluggable, so that
+it will be possible to deploy on many types of Clouds, including _naked_ Linux machines without an IaaS
+or virtualization layer.
+
+
+= InstancePool =
+InstancePool contains one Application across 3..n Stages. An InstancePool is unaware whether the same Application
+is part of another InstancePool, but there resources will be shared and if this set up is done, it is important
+that compatibility between versions is maintained to the highest of standards. If isolation between InstancePools
+are required, then different Cell should be defined.
+
+= Service Bundle =
+The <<Clapper Services Runtime>> can be configured to additionally make available OSGi bundles with any type
+of OSGi services. These are called Service Bundles. They executed with elevated security permissions, same
+platform permissions as the Clapper Services Runtime itself, but may contain its own additional constraints.
+
+= Stage =
+Stages are chained together within a data center. Each Stage is isolated from the other Stages. Typical
+Stages are _dev_ -> _qa_ -> _prod_ and similar. <<Promotion>> is the concept of _moving_ a particular version
+of an application from the current stage to the next one. There are two hardcoded stages, called <<Released>> stage
+for all versions available, and the <<EndOfLife>> stage for versions that are no longer used.
+
+If no other stages are defined, a promotion of a version in the Release stage will move the version to the
+EndOfLife stage and no longer available in the Release stage.
+
+
