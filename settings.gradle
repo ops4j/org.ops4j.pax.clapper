@@ -1,43 +1,29 @@
-include "core:api",
-        "core:model",
-        "core:spi",
-        "core:server",
-        "clients:cli",
-        "clients:web",
-        "runtimes:default:provider",
-        "runtimes:default:starter",
-        "runtimes:scripted",
-        "containers:bare",
-        "containers:ec2",
-        "services:dosgi",
-        "site",
-        'examples:jaxws:client',
-        'examples:jaxws:server'
+include "org.ops4j.pax.clapper.core.api",
+        "org.ops4j.pax.clapper.core.model",
+        "org.ops4j.pax.clapper.core.spi",
+        "org.ops4j.pax.clapper.core.server",
+        "org.ops4j.pax.clapper.client.cli",
+        "org.ops4j.pax.clapper.client.web",
+        "org.ops4j.pax.clapper.runtime.osgi.bundle",
+        "org.ops4j.pax.clapper.runtime.osgi.launcher",
+        "org.ops4j.pax.clapper.runtime.osgi.links",
+        "org.ops4j.pax.clapper.runtime.osgi.provider",
+        "org.ops4j.pax.clapper.runtime.scripted",
+        "org.ops4j.pax.clapper.container.bare",
+        "org.ops4j.pax.clapper.container.ec2",
+        "org.ops4j.pax.clapper.service.dosgi",
+        "org.ops4j.pax.clapper.service.events",
+        "org.ops4j.pax.clapper.site",
+        'org.ops4j.pax.clapper.example.jaxws.client',
+        'org.ops4j.pax.clapper.example.jaxws.server'
 
 rootProject.name = "org.ops4j.pax.clapper"
 
-validateProject(rootProject, "")
-
-def validateProject(project, parentName)
-{
+rootProject.children.each {project ->
+  String fileBaseName = project.name.replaceAll( "\\p{Upper}" ) { "-${it.toLowerCase()}" }
+  String projectDirName = "$fileBaseName"
+  project.projectDir = new File( settingsDir, projectDirName )
+  project.buildFileName = "${fileBaseName}.gradle"
   assert project.projectDir.isDirectory()
-  String srcDir = "$project.projectDir/src/main/java"
-  if( new File(srcDir).exists() )
-  {
-    String fileBaseName = project.name.replaceAll( "\\p{Upper}" ) { "-${it.toLowerCase()}" }
-    project.buildFileName = "${fileBaseName}.gradle"
-    assert project.buildFile.isFile()
-  }
-  if( parentName.endsWith('s') )
-  {
-    parentName = parentName.substring(0, parentName.length() - 1)
-  }
-  if( parentName.length() > 0 )
-  {
-    project.name = parentName + "." + project.name
-  }
-  println "Project: " + project.name
-  project.children.each { child ->
-    validateProject(child, project.name)
-  }
+  assert project.buildFile.isFile()
 }

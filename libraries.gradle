@@ -1,7 +1,93 @@
+def commonsCliVersion = '1.2'
+def dosgiVersion = '1.5.0'
+def felixVersion = '4.2.1'
+def guavaVersion = '15.0'
+def osgiEnterpriseVersion = '4.2.0'
+def osgiVersion = '4.3.1'
+def paxExamVersion = '3.3.0'
+def paxLoggingVersion = '1.7.1'
+def paxUrlVersion = '1.6.0'
 def servletVersion = '3.1.0'
+def slf4jVersion = '1.7.5'
 
 rootProject.ext {
   libraries = [
-          servlet: [group: "javax.servlet", name: "javax.servlet-api", version: servletVersion, transitive: false]
+          commons_cli: [group: "commons-cli", name: "commons-cli", version: commonsCliVersion],
+
+          cxf_dosgi_ri_discovery: [ group: "org.apache.cxf.dosgi", name: "cxf-dosgi-ri-discovery", version: dosgiVersion ],
+          cxf_dosgi_ri_discovery_distributed: [ group: "org.apache.cxf.dosgi", name: "cxf-dosgi-ri-discovery-distributed", version: dosgiVersion ],
+          cxf_dosgi_ri_discovery_distributed_zookeeper_server_config: [ group: "org.apache.cxf.dosgi", name: "cxf-dosgi-ri-discovery-distributed-zookeeper-server-config", version: dosgiVersion ],
+          cxf_dosgi_ri_discovery_distributed_zookeeper_server: [ group: "org.apache.cxf.dosgi", name: "cxf-dosgi-ri-discovery-distributed-zookeeper-server", version: dosgiVersion ],
+          cxf_dosgi_ri_discovery_local: [ group: "org.apache.cxf.dosgi", name: "cxf-dosgi-ri-discovery-local", version: dosgiVersion ],
+          cxf_dosgi_ri_dsw: [ group: "org.apache.cxf.dosgi", name: "cxf-dosgi-ri-dsw", version: dosgiVersion ],
+          cxf_dosgi_ri_topology_manager: [ group: "org.apache.cxf.dosgi", name: "cxf-dosgi-ri-topology-manager", version: dosgiVersion ],
+          cxf_dosgi_ri_dsw_cxf: [ group: "org.apache.cxf.dosgi", name: "cxf-dosgi-ri-dsw-cxf", version: dosgiVersion ],
+          cxf_dosgi_ri_felix: [ group: "org.apache.cxf.dosgi", name: "cxf-dosgi-ri-felix", version: dosgiVersion ],
+          cxf_dosgi_ri_felix_profiles: [ group: "org.apache.cxf.dosgi", name: "cxf-dosgi-ri-felix-profiles", version: dosgiVersion ],
+          felix_shell_extension: [ group: "org.apache.cxf.dosgi", name: "felix-shell-extension", version: dosgiVersion ],
+          cxf_dosgi_ri: [ group: "org.apache.cxf.dosgi", name: "cxf-dosgi-ri", version: dosgiVersion ],
+
+
+          felix: [group: "org.apache.felix", name: "org.apache.felix.framework", version: felixVersion],
+
+          guava: [group: "com.google.guava", name: "guava", version: guavaVersion],
+          osgi_core: [group: "org.osgi", name: "org.osgi.core", version: osgiVersion],
+          osgi_compendium: [group: "org.osgi", name: "org.osgi.compendium", version: osgiVersion],
+          osgi_enterprise: [group: "org.osgi", name: "org.osgi.enterprise", version: osgiEnterpriseVersion],
+
+          pax_exam_cm: [group: "org.ops4j.pax.exam", name: "pax-exam-cm", version: paxExamVersion],
+          pax_exam_spring: [group: "org.ops4j.pax.exam", name: "pax-exam-spring", version: paxExamVersion],
+          pax_exam_cdi: [group: "org.ops4j.pax.exam", name: "pax-exam-cdi", version: paxExamVersion],
+          pax_exam_spi: [group: "org.ops4j.pax.exam", name: "pax-exam-spi", version: paxExamVersion],
+          pax_exam_inject: [group: "org.ops4j.pax.exam", name: "pax-exam-inject", version: paxExamVersion],
+          pax_exam_player: [group: "org.ops4j.pax.exam", name: "pax-exam-player", version: paxExamVersion],
+          pax_exam_extender_service: [group: "org.ops4j.pax.exam", name: "pax-exam-extender-service", version: paxExamVersion],
+          pax_exam_link_assembly: [group: "org.ops4j.pax.exam", name: "pax-exam-link-assembly", version: paxExamVersion],
+          pax_exam_link_mvn: [group: "org.ops4j.pax.exam", name: "pax-exam-link-mvn", version: paxExamVersion],
+          pax_exam_testng_servlet_bridge: [group: "org.ops4j.pax.exam", name: "pax-exam-testng-servlet-bridge", version: paxExamVersion],
+          pax_exam_testng: [group: "org.ops4j.pax.exam", name: "pax-exam-testng", version: paxExamVersion],
+          pax_exam_servlet_bridge: [group: "org.ops4j.pax.exam", name: "pax-exam-servlet-bridge", version: paxExamVersion],
+          pax_exam_invoker_servlet: [group: "org.ops4j.pax.exam", name: "pax-exam-invoker-servlet", version: paxExamVersion],
+          pax_exam_invoker_junit: [group: "org.ops4j.pax.exam", name: "pax-exam-invoker-junit", version: paxExamVersion],
+          pax_exam_testforge: [group: "org.ops4j.pax.exam", name: "pax-exam-testforge", version: paxExamVersion],
+          pax_exam_junit4: [group: "org.ops4j.pax.exam", name: "pax-exam-junit4", version: paxExamVersion],
+          pax_exam_container_rbc: [group: "org.ops4j.pax.exam", name: "pax-exam-container-rbc", version: paxExamVersion],
+          pax_exam_container_native: [group: "org.ops4j.pax.exam", name: "pax-exam-container-native", version: paxExamVersion],
+          pax_exam_container_wildfly80: [group: "org.ops4j.pax.exam", name: "pax-exam-container-wildfly80", version: paxExamVersion],
+          pax_exam_container_karaf: [group: "org.ops4j.pax.exam", name: "pax-exam-container-karaf", version: paxExamVersion],
+          pax_exam_container_tomee: [group: "org.ops4j.pax.exam", name: "pax-exam-container-tomee", version: paxExamVersion],
+          pax_exam_container_tomcat: [group: "org.ops4j.pax.exam", name: "pax-exam-container-tomcat", version: paxExamVersion],
+          pax_exam_container_candi: [group: "org.ops4j.pax.exam", name: "pax-exam-container-candi", version: paxExamVersion],
+          pax_exam_container_resin: [group: "org.ops4j.pax.exam", name: "pax-exam-container-resin", version: paxExamVersion],
+          pax_exam_container_jboss72: [group: "org.ops4j.pax.exam", name: "pax-exam-container-jboss72", version: paxExamVersion],
+          pax_exam_container_jboss: [group: "org.ops4j.pax.exam", name: "pax-exam-container-jboss", version: paxExamVersion],
+          pax_exam_container_openwebbeans: [group: "org.ops4j.pax.exam", name: "pax-exam-container-openwebbeans", version: paxExamVersion],
+          pax_exam_container_weld: [group: "org.ops4j.pax.exam", name: "pax-exam-container-weld", version: paxExamVersion],
+          pax_exam_container_glassfish: [group: "org.ops4j.pax.exam", name: "pax-exam-container-glassfish", version: paxExamVersion],
+          pax_exam_container_forked: [group: "org.ops4j.pax.exam", name: "pax-exam-container-forked", version: paxExamVersion],
+          pax_exam_container_remote: [group: "org.ops4j.pax.exam", name: "pax-exam-container-remote", version: paxExamVersion],
+          pax_exam_container_glassfish_embedded: [group: "org.ops4j.pax.exam", name: "pax-exam-container-glassfish-embedded", version: paxExamVersion],
+          pax_exam_container_rbc_client: [group: "org.ops4j.pax.exam", name: "pax-exam-container-rbc-client", version: paxExamVersion],
+
+          pax_logging_api: [group: "org.ops4j.pax.logging", name: "pax-logging-api", version: paxLoggingVersion],
+
+          pax_url:[
+                  [group: "org.ops4j.pax.url", name: "pax-url-wrap", version: paxUrlVersion],
+                  [group: "org.ops4j.pax.url", name: "pax-url-war", version: paxUrlVersion],
+                  [group: "org.ops4j.pax.url", name: "pax-url-reference", version: paxUrlVersion],
+//                  [group: "org.ops4j.pax.url", name: "pax-url-obr", version: paxUrlVersion],  // Requires OSGi R5
+                  [group: "org.ops4j.pax.url", name: "pax-url-link", version: paxUrlVersion],
+                  [group: "org.ops4j.pax.url", name: "pax-url-dir", version: paxUrlVersion],
+                  [group: "org.ops4j.pax.url", name: "pax-url-classpath", version: paxUrlVersion],
+                  [group: "org.ops4j.pax.url", name: "pax-url-cache", version: paxUrlVersion],
+                  [group: "org.ops4j.pax.url", name: "pax-url-assembly", version: paxUrlVersion],
+                  [group: "org.ops4j.pax.url", name: "pax-url-aether", version: paxUrlVersion],
+                  [group: "org.ops4j.pax.url", name: "pax-url-commons", version: paxUrlVersion],
+                  [group: "org.ops4j.pax.url", name: "pax-url-maven-commons", version: paxUrlVersion]
+          ],
+
+          slf4j_api: [group: "org.slf4j", name: "slf4j-api", version: slf4jVersion],
+          slf4j_simple: [group: "org.slf4j", name: "slf4j-simple", version: slf4jVersion],
+          servlet: [group: "javax.servlet", name: "javax.servlet-api", version: servletVersion],
   ]
 }

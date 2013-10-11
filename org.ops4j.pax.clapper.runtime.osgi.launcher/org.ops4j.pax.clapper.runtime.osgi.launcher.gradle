@@ -1,0 +1,13 @@
+
+dependencies {
+  compile libraries.felix
+  compile libraries.guava
+  compile libraries.osgi_core
+  compile libraries.osgi_compendium
+  compile libraries.pax_logging_api
+  compile libraries.pax_exam_spi
+  compile libraries.pax_exam_container_native
+  compile libraries.pax_url
+
+  compile project(":org.ops4j.pax.clapper.runtime.osgi.links")
+}

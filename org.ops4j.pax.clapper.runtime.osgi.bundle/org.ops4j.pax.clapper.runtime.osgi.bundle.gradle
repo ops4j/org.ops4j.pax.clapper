@@ -1,0 +1,7 @@
+
+dependencies {
+  provided libraries.osgi_core
+  provided libraries.osgi_compendium
+  provided libraries.slf4j_api
+  provided libraries.guava
+}

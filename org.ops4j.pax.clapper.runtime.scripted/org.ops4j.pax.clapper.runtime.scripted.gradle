@@ -1,0 +1,4 @@
+
+dependencies {
+  provided libraries.osgi_core
+}

@@ -1,5 +1,0 @@
-
-dependencies {
-  compile libraries.pax_exam_system
-  compile libraries.pax_exam_native
-}

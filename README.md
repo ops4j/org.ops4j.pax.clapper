@@ -42,9 +42,16 @@ The Scripted Runtime simply deploys a script on to the Container. The script mus
 reachable be network, not on the local file system.
 
 ## Server
-The Clapper server is a Clapper application managing itself.
+The Pax Clapper server is a Pax Clapper application managing itself.
+
+### Rest Interface
+The Server application has a REST-ful interface, which is fully HATEOAS with a single bookmarkable URL. All interaction
+of Pax Clapper happens over this interface, and clients can only interact with Pax Clapper via this interface.
 
 ## Clients
+Human users interact with Pax Clapper via one of the available clients. Initially, command line client primarily for
+scripting and the Web UI for interactively using Pax Clapper. All functionality of the REST Interface are available
+in all clients, unless impossible for technical reasons.
 
 ### CLI - Command Line Interface
 
